@@ -11700,24 +11700,30 @@ body {
   border-radius: 0.25rem !important;
 }
 
-
-
-
 body{
   background-image: url('../img/vinhedo.jpg'); 
   background-size: 100%; 
   background-repeat: no-repeat;
 }
 
+div#boxlogin{
+  background-color: rgba(0,0,0,0.4);
+  border:none; 
+
+}
+
                     @media only screen and (max-width: 950px) {
-                      body{
-                          background-image: none;
-                          background-color: #fff;
+                      body{  
+                          background-image:url('../img/vinhedo_mobile.jpg');   
                       }
                       div#boxlogin{
-                        background-color: #fff;
-                        border: none;
+                        background-color: rgba(255,255,255,0.0);
                       }
+
+                      .card-text{
+                          font-size: 0.9rem;   
+                      }
+                     
                     }
 
 
