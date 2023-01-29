@@ -17,6 +17,9 @@
         <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/676/676422.png">
         <title>ifruit</title>
         <link href="css/styles.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
@@ -30,8 +33,7 @@
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                    
                 </div>
             </form>
             <!-- Navbar-->
@@ -39,9 +41,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item " href="#!">Meu perfil</a></li>
-                        <li><a class="dropdown-item " href="#!">Opcao1</a></li>
-                        <li><a class="dropdown-item " href="#!">Opcao2</a></li>
+                        <li><a class="dropdown-item " href="perfil.php">Meu perfil</a></li>
+                        <li><a class="dropdown-item " href="painel.php">Menu</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item text-danger" href="php/processa_logout.php">Sair</a></li>
                     </ul>
@@ -142,27 +143,9 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Static Navigation</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Static Navigation</li>
-                        </ol>
-                        <div class="">
-                            <div class="card-body">
-                                <p class="mb-0">
-                                    This page is an example of using static navigation. By removing the
-                                    <code>.sb-nav-fixed</code>
-                                    class from the
-                                    <code>body</code>
-                                    , the top navigation and side navigation will become static on scroll. Scroll down this page to see an example.
-                                </p>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </main>
+              
+                    
+               
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
@@ -211,7 +194,7 @@
                 <strong>Usuário: </strong><?php print $_SESSION['login']['nome']; print " ".$_SESSION['login']['sobrenome'] ?>
             </div>
 
-            <a class="float-end m-3" href="painel.php"><img src="https://cdn.icon-icons.com/icons2/72/PNG/256/refresh_arrows_14418.png") width="50"></a>
+            <a class="float-end m-3" href="painel.php"><img src="https://cdn-icons-png.flaticon.com/512/2267/2267901.png") width="50"></a>
             <div class="container-xl p-lg-3 p-5 mt-5">
                 <div class="d-grid gap-2">
 
