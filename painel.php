@@ -77,20 +77,21 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <div class="sb-sidenav-menu-heading">Menu</div>
+                            <a class="nav-link" href="painel.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
+                            <div class="sb-sidenav-menu-heading">Painel de controle</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Layouts
+                                Cadastros
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Static Navigation</a>
+                                    <!-- Button modal funcionario -->
+                                    <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#cadastro_Funcionario">Funcionário</a>
                                     <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
                                 </nav>
                             </div>
@@ -143,9 +144,70 @@
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-              
+                    <!-- ---------------------Modal formulario de cadastro de funcionario -->
                     
-               
+                    <div class="modal fade" id="cadastro_Funcionario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-fullscreen">
+                            <div class="modal-content">
+                                <div class="modal-header bg-warning">
+                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel"></h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                            <div class="modal-body p-5 bg-light"> 
+                            <h2>Cadastro de funcionário</h2><hr><br>
+                            <form class="row g-3">
+                                <img src="img/funcionario/perfil.jpg" class="rounded float-start" width="50px">
+                                <div class="col-md-6"> 
+                                    <label for="validationDefault01" class="form-label">Nome</label>
+                                    <input type="text" class="form-control" id="validationDefault01" value="Mark" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationDefault02" class="form-label">Sobrenome</label>
+                                    <input type="text" class="form-control" id="validationDefault02" value="Otto" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationDefaultUsername" class="form-label">Username</label>
+                                    <div class="input-group">
+                                    <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                                    <input type="text" class="form-control" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationDefault03" class="form-label">City</label>
+                                    <input type="text" class="form-control" id="validationDefault03" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationDefault04" class="form-label">State</label>
+                                    <select class="form-select" id="validationDefault04" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    <option>...</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationDefault05" class="form-label">Zip</label>
+                                    <input type="text" class="form-control" id="validationDefault05" required>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                                    <label class="form-check-label" for="invalidCheck2">
+                                        Agree to terms and conditions
+                                    </label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary" type="submit">Submit form</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger " data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-success">Savar</button>
+                        </div>
+                    </div>
+
+                    <!-- ----------------------FINAL do Modal formulario de cadastro de funcionario -->
+
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">

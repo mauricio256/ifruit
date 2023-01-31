@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26-Jan-2023 às 03:29
+-- Tempo de geração: 31-Jan-2023 às 17:50
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 7.4.30
 
@@ -53,8 +53,8 @@ CREATE TABLE `funcionario` (
 --
 
 INSERT INTO `funcionario` (`cod_funcionario_pk`, `nome`, `sobrenome`, `email`, `senha`, `contato`, `CPF`, `RG`, `funcao`, `contrato`, `nascimento`, `CEP`, `endereco`, `numero`, `bairro`, `cidade`, `estado`, `cadastro`) VALUES
-(1, 'Mauricio', 'Dos Santos França', 'mauricio_franca@hotmail.com', '1234', '74981293008', '86136254522', '12345678', 'Fiscal', 1, '1996-08-03', '48914052', 'Quadra 28', 15, 'Joao paulo ll', 'Juazeiro', 'BA', '2023-01-25 13:21:54'),
-(2, 'Lucas', 'De Souza Matos', 'lucas@hotmail.com', '1234', '74981254569', '86125458955', '12345678', 'funcionario', 1, '1995-05-02', '48652365', 'Rua aprigio do arte', 70, 'Areia branca', 'petrolina', 'PE', '2023-01-25 17:27:11');
+(1, 'Mauricio', 'Dos Santos França', 'mauricio_franca@hotmail.com', '1234', '74981293008', '86136254522', '12345678', 'fiscal', 1, '1996-08-03', '48914052', 'Quadra 28', 15, 'Joao paulo ll', 'Juazeiro', 'BA', '2023-01-25 13:21:54'),
+(2, 'Lucas', 'De Souza Matos', 'lucas@hotmail.com', '1234', '74981254569', '777', '12345678', 'usuario', 1, '1995-05-02', '48652365', 'Rua aprigio do arte', 70, 'Areia branca', 'petrolina', 'PE', '2023-01-25 17:27:11');
 
 -- --------------------------------------------------------
 
@@ -74,7 +74,8 @@ CREATE TABLE `linha` (
 --
 
 INSERT INTO `linha` (`cod_lote_fk`, `cod_valvula_fk`, `cod_linha_pk`, `descricao`) VALUES
-(1, 1, 1, 'Linha pronta para poda');
+(1, 1, 1, 'Linha pronta para poda'),
+(2, 2, 2, 'teste de descricao de linha');
 
 -- --------------------------------------------------------
 
@@ -92,7 +93,8 @@ CREATE TABLE `lote` (
 --
 
 INSERT INTO `lote` (`cod_lote_pk`, `descricao`) VALUES
-(1, 'lote com Uvas vitoria');
+(1, 'lote com Uvas vitoria'),
+(2, 'Descricao do lote 2');
 
 -- --------------------------------------------------------
 
@@ -107,16 +109,24 @@ CREATE TABLE `ordem_servico` (
   `cod_lote_fk` int(11) NOT NULL,
   `cod_valvula_fk` int(11) NOT NULL,
   `tipo_os` varchar(60) NOT NULL,
-  `conteudo` varchar(120) NOT NULL
+  `conteudo` varchar(120) NOT NULL,
+  `meta` int(11) NOT NULL,
+  `colhida` int(11) NOT NULL,
+  `data_criacao` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `ordem_servico`
 --
 
-INSERT INTO `ordem_servico` (`cod_os_pk`, `fiscal`, `cod_funcionario_fk`, `cod_lote_fk`, `cod_valvula_fk`, `tipo_os`, `conteudo`) VALUES
-(1, 'Mauricio Dos santos França', 2, 1, 1, 'poda', 'Livramento de todas as plantas da válvula'),
-(2, 'Mauricio Dos santos França', 2, 1, 1, 'Fertilização', 'Fertilizar todas as plantas da válvula');
+INSERT INTO `ordem_servico` (`cod_os_pk`, `fiscal`, `cod_funcionario_fk`, `cod_lote_fk`, `cod_valvula_fk`, `tipo_os`, `conteudo`, `meta`, `colhida`, `data_criacao`) VALUES
+(1, 'Mauricio Dos santos França', 2, 1, 1, 'Atividades', 'Livramento de todas as plantas da válvula', 10, 0, '2023-01-27 23:15:40'),
+(2, 'Mauricio Dos santos França', 2, 1, 1, 'Pulverização', 'Pulverizar todas as plantas da válvula', 0, 0, '2023-01-27 23:15:40'),
+(3, 'Maurício Dos Santos Franca', 2, 1, 1, 'Adubação', 'Adubar toda a válvula', 0, 0, '2023-01-27 23:15:40'),
+(4, 'Mauricio França', 2, 2, 2, 'Atividades', 'Retirar a proteção plástica das uvas', 10, 0, '2023-01-27 23:15:40'),
+(5, 'Mauricio França', 2, 2, 2, 'Atividades', 'Coletar todas as caixas de uvas ja colhidas', 30, 0, '2023-01-27 23:15:40'),
+(6, 'Mauricio França', 2, 1, 1, 'Atividades', 'Testde de conteudo 3', 0, 0, '2023-01-27 23:15:40'),
+(7, 'Mauricio Francã', 2, 2, 2, 'Atividades', 'Teste de conteudo 4', 0, 0, '2023-01-27 23:15:40');
 
 -- --------------------------------------------------------
 
@@ -185,7 +195,8 @@ CREATE TABLE `valvula` (
 --
 
 INSERT INTO `valvula` (`cod_lote_fk`, `cod_valvula_pk`, `descricao`, `variedade`, `numero_plantas`, `area`, `escapamento`) VALUES
-(1, 1, 'Valvula com uvas vitoria ainda em crescimento', 'variedade 1', 50, 50, 10);
+(1, 1, 'Valvula com uvas vitoria ainda em crescimento', 'variedade 1', 50, 50, 10),
+(2, 2, 'descricao da valvula 2', 'descricao da variedade', 20, 50, 10);
 
 --
 -- Índices para tabelas despejadas
@@ -255,7 +266,7 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT de tabela `ordem_servico`
 --
 ALTER TABLE `ordem_servico`
-  MODIFY `cod_os_pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cod_os_pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `produto`
