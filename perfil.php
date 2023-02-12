@@ -54,14 +54,13 @@
                 <h2 class="text-center">Perfil de usuário</h2><br>
                 <h6 class="text-center btn-info">Dados pessoais</h6>
                 <?php foreach(busca_funcionario($_SESSION['login']['cod_funcionario_pk']) as $row){ ?> 
-                    <img src="img/funcionario/perfil.jpg" class="img-fluid float-end m-2 "  width="90px" alt="">
+                    <img src="<?php print $row['foto'];?>" class="img-fluid float-end m-2 "  width="90px" alt="">
                     
                     <label class="form-label opacity-50">Nome: </label> <?php print $row['nome'] ." ". $row['sobrenome']; ?><br>
                     <label class="form-label opacity-50">E-mail: </label> <?php print $row['email'];?><br>
                     <label class="form-label opacity-50">Contato: </label> <?php print $row['contato']; ?><br>
                     <label class="form-label opacity-50">CPF: </label> <?php print $row['CPF']; ?><br>
                     <label class="form-label opacity-50">RG: </label> <?php print $row['RG']; ?><br>
-                    
                     <label class="form-label opacity-50">Função: </label> <?php print $row['funcao']; ?><br>
                     <label class="form-label opacity-50">Status do contrato: </label> <?php if($row['contrato']):print "Ativo"; else:print "Desligado"; endif; ;?><br>
                     <br><h6 class="text-center btn-info">Endereço</h6>

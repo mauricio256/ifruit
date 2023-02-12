@@ -36,13 +36,11 @@
                               javascript:window.location='../cadastro_funcionario.php';
                          </script>";  
                     else:
-                         echo"Erro";
+                         echo "<div style='width: 100%; padding:20px; background-color:red; color:yellow;'>Ocorreu um erro ao cadastrar. tente novamente </div><br><a href='../cadastro_funcionario.php'>Voltar</a>"; 
                     endif;
                     
                     } catch (Exception $e) {
-                         echo $e->getMessage();
-                         //$_SESSION['MSG_UPLOAD_IMG'] = '<p style=" background-color:red; padding:20px; text-align:center; font-size:15pt; color:white;">Uma imagem com titulo: <strong> '.$titulo.' </strong> já possui cadastro<br> tente um titulo diferente</p>';
-                         /// echo" <script>document.location.href='../../view/cadastrar_img.php'</script>";
+                         echo "<div style='width: 100%; padding:20px; background-color:red; color:yellow;'>Ocorreu um erro: Mesangem de erro:".  $e->getMessage() ."</div><br><a href='../cadastro_funcionario.php'>Voltar</a>"; 
                     }
      else:
           echo"erro img";

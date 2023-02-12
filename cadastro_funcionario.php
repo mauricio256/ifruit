@@ -1,9 +1,22 @@
 <?php
  session_start();
+ include("php/conexao_db.php");
 
  if( $_SESSION['login']['funcao'] != "fiscal" ):
      header('Location:login.html');
  endif;
+
+ function funcionario(){
+    $conn = conecta();
+    $query = $conn->query("SELECT * FROM funcionario");
+    if($query->fetch()):   //// verifica se a query retorna algum valor caso nao, dado nao possui no banco 
+        $query->execute();     /// execulta a query
+        $conn = NULL;
+        return $query->fetchALL(PDO::FETCH_ASSOC);   ///returna um objeto com todos os valores da quary
+    else:
+       return NULL;
+    endif; 
+}
 
 ?>
 <!DOCTYPE html>
@@ -23,8 +36,67 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
-                            <div class="card pt-4">
-                                    <div class="card-body bg-light m-3 ">
+                    <div class="card pt-4">
+                        <div class="card-body bg-light m-3 ">
+                        <h3 class="text-center">Cadastro de Funcionário</h3><hr>
+                          <div style=" overflow-y: scroll;"> 
+                            <table class="table  table-striped ">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th scope="col">Código</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">Sobrenome</th>
+                                        <th scope="col">E-mail</th>
+                                        <th scope="col">Contato</th>
+                                        <th scope="col">CPF</th>
+                                        <th scope="col">RG</th>
+                                        <th scope="col">Nascimento</th>
+                                        <th scope="col">Função</th>
+                                        <th scope="col">Contrato</th>
+                                        <th scope="col">CEP</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Cidade</th>
+                                        <th scope="col">Bairro</th>
+                                        <th scope="col">Logradouro</th>
+                                        <th scope="col">Número</th>
+                                        <th scope="col">Cadastro</th>
+                                        <th scope="col">Ações</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <?php if(funcionario()):
+                                         foreach(funcionario() as $row){ 
+                                        ?> 
+
+                                        <tr>
+                                            <th scope="row"><?php print $row['cod_funcionario_pk']; ?></th>
+                                            <td><?php print $row['nome']; ?></td>
+                                            <td><?php print $row['sobrenome']; ?></td>
+                                            <td><?php print $row['email']; ?></td>
+                                            <td><?php print $row['contato']; ?></td>
+                                            <td><?php print $row['CPF']; ?></td>
+                                            <td><?php print $row['RG']; ?></td>
+                                            <td><?php print $row['nascimento']; ?></td>
+                                            <td><?php print $row['funcao']; ?></td>
+                                            <td><?php print $row['contrato']; ?></td>
+                                            <td><?php print $row['CEP']; ?></td>
+                                            <td><?php print $row['estado']; ?></td>
+                                            <td><?php print $row['cidade']; ?></td>
+                                            <td><?php print $row['bairro']; ?></td>
+                                            <td><?php print $row['endereco']; ?></td>
+                                            <td><?php print $row['numero']; ?></td>
+                                            <td><?php print $row['cadastro']; ?></td>
+                                            <td> <a class="btn btn-primary btn-sm" href="php/.php?cod_funcionario=<?php print $row['cod_funcionario_pk']; ?>">Editar</a></td>
+                                            <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_funcionario.php?cod_funcionario=<?php print $row['cod_funcionario_pk']; ?>&caminho_img=<?php print $row['foto']; ?>">Excluir</a></td>
+                                        </tr>           
+                                    <?php } endif; ?> 
+                                </tbody>
+                            </table><br></br><br>
+                        </div>                   
+
+
                                         <form action="php/processa_cadastro_funcionario.php" enctype="multipart/form-data" method="POST" class="p-3">
                                             <h3 class="text-center">Dados Pessoais</h3><hr>
                                             <div class="row mb-3">
@@ -196,7 +268,7 @@
                                     <div class="card-body bg-light  ">
                                   
                                         <div class="mt-5 text-end">
-                                            <a href="painel.php" class="btn btn-outline-danger">Cancelar</a>
+                                            <a href="painel.php" class="btn btn-outline-danger">Voltar</a>
                                             <button type="submit" class="btn btn-info" onclick ="return msg_salvando()">Cadastrar</button>   
                                         </div>
                                 </form>        
@@ -210,6 +282,24 @@
                     output.src = URL.createObjectURL(event.target.files[0]);
                 }; 
                 
+        </script>
+
+        <script>
+
+            function confirma_deleta() {
+
+                if (confirm("Deseja mesmo DELETAR?")) {
+
+                    return true;
+
+                } else {
+
+                    return false;
+
+                }
+
+            }
+
         </script>
     </body>
 </html>

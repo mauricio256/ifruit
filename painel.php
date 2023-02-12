@@ -1,10 +1,24 @@
 <?php
     session_start();
     include("php/busca_ordem_servico.php");
+    include_once("php/conexao_db.php");
 
     if( !isset($_SESSION['login']) ):
         header('Location:../php/index.html');
     endif;
+
+    function produto_os(){
+        $conn = conecta();
+        $query = $conn->query("SELECT * FROM produto_os");
+        if($query->fetch()):   //// verifica se a query retorna algum valor caso nao, dado nao possui no banco 
+            $query->execute();     /// execulta a query
+            $conn = NULL;
+            return $query->fetchALL(PDO::FETCH_ASSOC);   ///returna um objeto com todos os valores da quary
+        else:
+           return NULL;
+        endif; 
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -82,11 +96,11 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <!-- Button modal casdastros-->
                                     <a class="nav-link" href="cadastro_funcionario.php">Funcionário</a>
-                                    <a class="nav-link" href="#">Lotes</a>
-                                    <a class="nav-link" href="#">Válvulas</a>
-                                    <a class="nav-link" href="#">Linhas</a>
-                                    <a class="nav-link" href="#">Ordens de Serviços</a>
-                                    <a class="nav-link" href="#">Produtos</a>
+                                    <a class="nav-link" href="cadastro_lote.php">Lote</a>
+                                    <a class="nav-link" href="cadastro_valvula.php">Válvula</a>
+                                    <a class="nav-link" href="cadastro_linha.php">Linha</a>
+                                    <a class="nav-link" href="#">Ordem de Serviço</a>
+                                    <a class="nav-link" href="#">Produto</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -133,18 +147,19 @@
                                 <th scope="col">Válvula</th>
                                 <th scope="col">Tipo OS</th>
                                 <th scope="col">Conteúdo</th>
+                                <th scope="col">Produtos</th>
                                 <th scope="col">Meta</th>
                                 <th scope="col">Concluidos</th>
                                 <th scope="col"></th><th scope="col"></th>
                                 <th scope="col">Ações</th>
-                                <th scope="col"></th>
                                 <th scope="col"></th>
                             
                             </tr>
                         </thead>
                             <tbody>
 
-                <?php foreach(ordem_servico() as $row){ ?> 
+                <?php if(ordem_servico()): 
+                    foreach(ordem_servico() as $row){ ?> 
                             <tr>
                                 <th scope="row"><?php print $row['cod_os_pk']; ?></th>
                                 <td><?php print $row['fiscal']; ?></td>
@@ -153,18 +168,45 @@
                                 <td><?php print $row['cod_valvula_fk']; ?></td>
                                 <td><?php print $row['tipo_os']; ?></td>
                                 <td><?php print $row['conteudo']; ?></td>
+                                <td><button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#staticBackdrop">Visualizar</button></td>
                                 <td><?php print $row['meta']; ?></td>
                                 <td><?php print $row['colhida']; ?></td>
                                 <td></td>
                                 <td></td>
-                                <td> <a class="btn btn-warning btn-sm" href="#">Abrir</a></td>
+                                <td> <a class="btn btn-warning btn-sm" href="#">Editar</a></td>
                                 <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_os.php?cod_os=<?php print $row['cod_os_pk']; ?>">Excluir</a></td>
-                                <td><a class="btn btn-success btn-sm" href="#">Editar</a></td>
                             </tr>           
-                <?php } ?>           
+                <?php } else:print"<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nenhum registro encontrado</p>"; endif; ?>          
 
                             </tbody>
                     </table>
+
+
+                    <!-- Modal lista de produtos OS -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Lista de produtos</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <?php if(produto_os()): 
+                                foreach(produto_os() as $row){ ?> 
+
+                                    COD:<?php print $row['cod_produto_fk']; ?>
+                                    Quantidade: <?php print $row['quantidade']; ?>
+
+                            <?php } else:print"<br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nenhum registro encontrado</p>"; endif; ?>       
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+
           
 
 
@@ -251,7 +293,8 @@
                         <div class="modal-body row">
                             
                             <!-- Impressao dos valores do banco -->
-                            <?php foreach(ordem_servico_atividades($_SESSION['login']['cod_funcionario_pk']) as $row){ ?> 
+                            <?php if(ordem_servico_atividades($_SESSION['login']['cod_funcionario_pk'])):
+                                foreach(ordem_servico_atividades($_SESSION['login']['cod_funcionario_pk']) as $row){ ?> 
                                 
                                 <div class="col-6">
                                     <div class="card mb-3">
@@ -265,7 +308,7 @@
                                     </div>
                                 </div> 
 
-                            <?php } ?>
+                            <?php } else:print"<br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nenhum registro encontrado</p>"; endif; ?>
                             <!-- FIM da impressao dos valores do banco -->
                         </div>
                         <div class="modal-footer">
@@ -295,7 +338,8 @@
                         <div class="modal-body row">
                             
                             <!-- Impressao dos valores do banco -->
-                            <?php foreach(ordem_servico_pulverizacao($_SESSION['login']['cod_funcionario_pk']) as $row){ ?> 
+                            <?php if(ordem_servico_pulverizacao($_SESSION['login']['cod_funcionario_pk'])):
+                                foreach(ordem_servico_pulverizacao($_SESSION['login']['cod_funcionario_pk']) as $row){ ?> 
                                 
                                 <div class="col-6">
                                     <div class="card mb-3">
@@ -309,7 +353,7 @@
                                     </div>
                                 </div> 
 
-                            <?php } ?>
+                            <?php } else:print"<br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nenhum registro encontrado</p>"; endif;?>
                             <!-- FIM da impressao dos valores do banco -->
                         </div>
                         <div class="modal-footer">
@@ -339,7 +383,8 @@
                         <div class="modal-body row">
                             
                             <!-- Impressao dos valores do banco -->
-                            <?php foreach(ordem_servico_adubacao($_SESSION['login']['cod_funcionario_pk']) as $row){ ?> 
+                            <?php if(ordem_servico_adubacao($_SESSION['login']['cod_funcionario_pk'])):
+                                foreach(ordem_servico_adubacao($_SESSION['login']['cod_funcionario_pk']) as $row){ ?> 
                                 
                                 <div class="col-6">
                                     <div class="card mb-3">
@@ -353,7 +398,7 @@
                                     </div>
                                 </div> 
 
-                            <?php } ?>
+                            <?php } else:print"<br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nenhum registro encontrado</p>"; endif;?>
                             <!-- FIM da impressao dos valores do banco -->
                         </div>
                         <div class="modal-footer">
@@ -386,19 +431,19 @@
 
         <script>
 
-        function confirma_deleta() {
+            function confirma_deleta() {
 
-            if (confirm("Deseja mesmo DELTAR essa ordem de serviço?")) {
+                if (confirm("Deseja mesmo DELETAR essa ordem de serviço?")) {
 
-                return true;
+                    return true;
 
-            } else {
+                } else {
 
-                return false;
+                    return false;
+
+                }
 
             }
-
-        }
 
     </script>
     </body>
