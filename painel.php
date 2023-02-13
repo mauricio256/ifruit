@@ -99,7 +99,7 @@
                                     <a class="nav-link" href="cadastro_lote.php">Lote</a>
                                     <a class="nav-link" href="cadastro_valvula.php">Válvula</a>
                                     <a class="nav-link" href="cadastro_linha.php">Linha</a>
-                                    <a class="nav-link" href="#">Ordem de Serviço</a>
+                                    <a class="nav-link" href="cadastro_ordem_servico.php">Ordem de Serviço</a>
                                     <a class="nav-link" href="#">Produto</a>
                                 </nav>
                             </div>
@@ -131,101 +131,7 @@
                         <?php print $_SESSION['login']['nome']; print " ".$_SESSION['login']['sobrenome'] ?>
                     </div>
                 </nav>
-            </div>
-            
-            <!--  LISTA ORDENS DE SERVIÇO  -->
-            <div class="container p-3 pt-3 bg-light" style=" overflow-y: scroll;">
-                <div class="table-responsive-xxl">
-                <h2>Ordens de Serviço</h2><hr>
-                    <table class="table table-striped">
-                        <thead class="table-primary">
-                            <tr>
-                                <th scope="col">OS</th>
-                                <th scope="col">Fiscal</th>
-                                <th scope="col">Funcionário</th>
-                                <th scope="col">Lote</th>
-                                <th scope="col">Válvula</th>
-                                <th scope="col">Tipo OS</th>
-                                <th scope="col">Conteúdo</th>
-                                <th scope="col">Produtos</th>
-                                <th scope="col">Meta</th>
-                                <th scope="col">Concluidos</th>
-                                <th scope="col"></th><th scope="col"></th>
-                                <th scope="col">Ações</th>
-                                <th scope="col"></th>
-                            
-                            </tr>
-                        </thead>
-                            <tbody>
-
-                <?php if(ordem_servico()): 
-                    foreach(ordem_servico() as $row){ ?> 
-                            <tr>
-                                <th scope="row"><?php print $row['cod_os_pk']; ?></th>
-                                <td><?php print $row['fiscal']; ?></td>
-                                <td>Lucas de Souza Matos</td>
-                                <td><?php print $row['cod_lote_fk']; ?></td>
-                                <td><?php print $row['cod_valvula_fk']; ?></td>
-                                <td><?php print $row['tipo_os']; ?></td>
-                                <td><?php print $row['conteudo']; ?></td>
-                                <td><button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#staticBackdrop">Visualizar</button></td>
-                                <td><?php print $row['meta']; ?></td>
-                                <td><?php print $row['colhida']; ?></td>
-                                <td></td>
-                                <td></td>
-                                <td> <a class="btn btn-warning btn-sm" href="#">Editar</a></td>
-                                <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_os.php?cod_os=<?php print $row['cod_os_pk']; ?>">Excluir</a></td>
-                            </tr>           
-                <?php } else:print"<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nenhum registro encontrado</p>"; endif; ?>          
-
-                            </tbody>
-                    </table>
-
-
-                    <!-- Modal lista de produtos OS -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Lista de produtos</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <?php if(produto_os()): 
-                                foreach(produto_os() as $row){ ?> 
-
-                                    COD:<?php print $row['cod_produto_fk']; ?>
-                                    Quantidade: <?php print $row['quantidade']; ?>
-
-                            <?php } else:print"<br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nenhum registro encontrado</p>"; endif; ?>       
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-
-          
-
-
-                        
-               
-
-
-
-
-
-
-
-
-
-
-
-                </div>
-            </div>
-            
+            </div>        
         </div>   
         <footer class="py-4 pb-5 bg-dark">
                     <div class="container-fluid px-4">
