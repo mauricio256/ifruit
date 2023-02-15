@@ -60,76 +60,78 @@ function linha(){
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="card pt-4 w-100">
-            <div class="card-body bg-light m-3">
-                <form action="php/processa_cadastro_linha.php" method="POST" class="p-3">
-                <h3 class="text-center">Cadastro de linha</h3><hr>
-                <div class="mb-3">
-                    <table class="table table-striped">
-                                <thead class="table-primary">
-                                    <tr>
-                                        <th scope="col">Lote</th>
-                                        <th scope="col">Válvula</th>
-                                        <th scope="col">Linha</th>
-                                        <th scope="col">Descrição</th>
-                                        <th scope="col">Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if(linha()):
-                                         foreach(linha() as $row){ ?> 
-                                        <tr>
-                                            <th scope="row"><?php print $row['cod_lote_fk']; ?></th>
-                                            <th scope="row"><?php print $row['cod_valvula_fk']; ?></th>
-                                            <th scope="row"><?php print $row['cod_linha_pk']; ?></th>
-                                            <td><?php print $row['descricao']; ?></td>
-                                            <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_linha.php?cod_linha=<?php print $row['cod_linha_pk']; ?>">Excluir</a></td>
-                                        </tr>           
-                                    <?php } endif;?> 
-                                </tbody>
-                    </table>
-
-                <br><br>
-                <label for="exampleFormControlTextarea1" class="form-label">Selecione o lote da válvula</label>
-                <select class="form-select" required name="cod_lote" aria-label="Default select example">
-                <option selected></option>
-
-                    <?php foreach(lote() as $row){ ?>                    
-                        <option value="<?php print $row['cod_lote_pk']; ?>"><strong>Lote: <?php print $row['cod_lote_pk']; ?> (<?php print $row['descricao']; ?>)</option>
-                    <?php } ?> 
-
-                </select>
-                <br>
-                <label for="exampleFormControlTextarea1" class="form-label">Selecione a válvula da linha</label>
-                <select class="form-select" required name="cod_valvula" aria-label="Default select example">
-                <option selected></option>
-
-                    <?php foreach(valvula() as $row){ ?>                    
-                        <option value="<?php print $row['cod_valvula_pk']; ?>"><strong>Valvula: <?php print $row['cod_valvula_pk']; ?> (<?php print $row['descricao']; ?>)</option>
-                    <?php } ?> 
-
-                </select>
-                <br>
-
-                        <label for="exampleFormControlInput1" class="form-label">Número da Linha</label>
-                        <input type="number" required class="form-control" name="cod_linha" id="exampleFormControlInput1" placeholder="">
-            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-                                <textarea class="form-control" required name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div> 
-
-                        </div>
-
-                        <div class="card-body bg-light  ">
-                            <div class="mt-5 text-end">
-                                <a href="painel.php" class="btn btn-outline-danger">Voltar</a>
-                                <button type="submit" class="btn btn-info">Cadastrar</button>   
-                            </div>
-                        </div>
+        <div class="card p-5 pt-4 w-100">
+            <div class="card-body bg-light shadow m-3">
+                <div class=" text-start">
+                    <a href="painel.php" class="btn btn-outline-danger">Voltar</a> 
                 </div>
-                </form>        
-            </div>
+                <h3 class="text-center">Linhas Cadastradas</h3><hr>
+                <div class="mb-3">
+                    <div style=" overflow-y: scroll;"> 
+                        <table class="table table-striped">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th scope="col">Lote</th>
+                                            <th scope="col">Válvula</th>
+                                            <th scope="col">Linha</th>
+                                            <th scope="col">Descrição</th>
+                                            <th scope="col">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if(linha()):
+                                            foreach(linha() as $row){ ?> 
+                                            <tr>
+                                                <th scope="row"><?php print $row['cod_lote_fk']; ?></th>
+                                                <th scope="row"><?php print $row['cod_valvula_fk']; ?></th>
+                                                <th scope="row"><?php print $row['cod_linha_pk']; ?></th>
+                                                <td><?php print $row['descricao']; ?></td>
+                                                <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_linha.php?cod_linha=<?php print $row['cod_linha_pk']; ?>">Excluir</a></td>
+                                            </tr>           
+                                        <?php } endif;?> 
+                                    </tbody>
+                        </table>
+                    </div><br><br>
+                </div>    
+            </div> 
+            
+            <div class="card-body bg-light shadow m-3">
+            <h3 class="text-center">Cadastro de linha</h3><hr>
+                <form action="php/processa_cadastro_linha.php" method="POST" class="p-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Selecione o lote da válvula</label>
+                    <select class="form-select" required name="cod_lote" aria-label="Default select example">
+                    <option selected></option>
+
+                        <?php foreach(lote() as $row){ ?>                    
+                            <option value="<?php print $row['cod_lote_pk']; ?>"><strong>Lote: <?php print $row['cod_lote_pk']; ?> (<?php print $row['descricao']; ?>)</option>
+                        <?php } ?> 
+
+                    </select>
+                    <br>
+                    <label for="exampleFormControlTextarea1" class="form-label">Selecione a válvula da linha</label>
+                    <select class="form-select" required name="cod_valvula" aria-label="Default select example">
+                    <option selected></option>
+
+                        <?php foreach(valvula() as $row){ ?>                    
+                            <option value="<?php print $row['cod_valvula_pk']; ?>"><strong>Valvula: <?php print $row['cod_valvula_pk']; ?> (<?php print $row['descricao']; ?>)</option>
+                        <?php } ?> 
+
+                    </select>
+                    <br>
+                    <label for="exampleFormControlInput1" class="form-label">Número da Linha</label>
+                    <input type="number" required class="form-control" name="cod_linha" id="exampleFormControlInput1" placeholder="">
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
+                                <textarea class="form-control" required name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div> 
+     
+                        <div class="mt-3 text-end">
+                            <a href="painel.php" class="btn btn-outline-danger">Voltar</a>
+                            <button type="submit" class="btn btn-info" onclick ="return msg_salvando()">Cadastrar</button>   
+                        </div>
+          
+                </div>              
+            </form> 
         </div> 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

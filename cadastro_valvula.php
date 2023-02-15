@@ -48,55 +48,62 @@ function lote(){
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="card pt-4 w-100">
-            <div class="card-body bg-light m-3">
-                <form action="php/processa_cadastro_valvula.php" method="POST" class="p-3">
-                <h3 class="text-center">Cadastro de válvula</h3><hr>
+        <div class="card p-5 pt-4 w-100">
+            <div class="card-body bg-light shadow m-3">  
+                <div class="text-start">
+                    <a href="painel.php" class="btn btn-outline-danger">Voltar</a> 
+                </div>
+                <h3 class="text-center">Válvulas Cadastradas</h3><hr>
                 <div class="mb-3">
-                    <table class="table table-striped">
-                                <thead class="table-primary">
-                                    <tr>
-                                        <th scope="col">Lote</th>
-                                        <th scope="col">Válvula</th>
-                                        <th scope="col">Descrição</th>
-                                        <th scope="col">Variedade</th>
-                                        <th scope="col">Quantidade de plantas</th>
-                                        <th scope="col">Área</th>
-                                        <th scope="col">Escapamento</th>
-                                        <th scope="col">Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if(valvula()): 
-                                        foreach(valvula() as $row){ ?> 
+                    <div style=" overflow-y: scroll;"> 
+                        <table class="table table-striped">
+                                    <thead class="table-primary">
                                         <tr>
-                                            <th scope="row"><?php print $row['cod_lote_fk']; ?></th>
-                                            <th scope="row"><?php print $row['cod_valvula_pk']; ?></th>
-                                            <td><?php print $row['descricao']; ?></td>
-                                            <td><?php print $row['variedade']; ?></td>
-                                            <td><?php print $row['numero_plantas']; ?></td>
-                                            <td><?php print $row['area']; ?></td>
-                                            <td><?php print $row['escapamento']; ?></td>
-                                            <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_valvula.php?cod_valvula=<?php print $row['cod_valvula_pk']; ?>">Excluir</a></td>
-                                        </tr>           
-                                    <?php } endif; ?> 
-                                </tbody>
-                    </table>
+                                            <th scope="col">Lote</th>
+                                            <th scope="col">Válvula</th>
+                                            <th scope="col">Descrição</th>
+                                            <th scope="col">Variedade</th>
+                                            <th scope="col">Quantidade de plantas</th>
+                                            <th scope="col">Área</th>
+                                            <th scope="col">Escapamento</th>
+                                            <th scope="col">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if(valvula()): 
+                                            foreach(valvula() as $row){ ?> 
+                                            <tr>
+                                                <th scope="row"><?php print $row['cod_lote_fk']; ?></th>
+                                                <th scope="row"><?php print $row['cod_valvula_pk']; ?></th>
+                                                <td><?php print $row['descricao']; ?></td>
+                                                <td><?php print $row['variedade']; ?></td>
+                                                <td><?php print $row['numero_plantas']; ?></td>
+                                                <td><?php print $row['area']; ?></td>
+                                                <td><?php print $row['escapamento']; ?></td>
+                                                <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_valvula.php?cod_valvula=<?php print $row['cod_valvula_pk']; ?>">Excluir</a></td>
+                                            </tr>           
+                                        <?php } endif; ?> 
+                                    </tbody>
+                        </table>
+                    </div> <br><br>
+                </div>    
+            </div>
+            
+            <div class="card-body bg-light shadow m-3">
+                <h3 class="text-center">Cadastro de válvula</h3><hr>
+                <form action="php/processa_cadastro_valvula.php" method="POST" class="p-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Selecione o lote da válvula</label>
+                    <select class="form-select" required name="cod_lote" aria-label="Default select example">
+                    <option selected></option>
 
+                        <?php foreach(lote() as $row){ ?>                    
+                            <option value="<?php print $row['cod_lote_pk']; ?>"><strong>Lote: <?php print $row['cod_lote_pk']; ?> (<?php print $row['descricao']; ?>)</option>
+                        <?php } ?> 
 
-                <br><br>
-                <label for="exampleFormControlTextarea1" class="form-label">Selecione o lote da válvula</label>
-                <select class="form-select" required name="cod_lote" aria-label="Default select example">
-                <option selected></option>
-
-                    <?php foreach(lote() as $row){ ?>                    
-                        <option value="<?php print $row['cod_lote_pk']; ?>"><strong>Lote: <?php print $row['cod_lote_pk']; ?> (<?php print $row['descricao']; ?>)</option>
-                    <?php } ?> 
-
-                </select><br>
+                    </select><br>
                         <label for="exampleFormControlInput1" class="form-label">Número da Valvula</label>
                         <input type="number" required class="form-control" name="cod_valvula" id="exampleFormControlInput1" placeholder="">
-            </div>
+            
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
                                 <textarea class="form-control" required name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -121,15 +128,14 @@ function lote(){
                                 <label for="exampleFormControlInput1" class="form-label">Escapamento</label>
                                 <input type="text" required class="form-control" name="escapamento" id="exampleFormControlInput1" placeholder="">
                             </div>
-                        </div>
+                       
 
-                        <div class="card-body bg-light  ">
+                  
                             <div class="mt-5 text-end">
                                 <a href="painel.php" class="btn btn-outline-danger">Voltar</a>
                                 <button type="submit" class="btn btn-info">Cadastrar</button>   
                             </div>
-                        </div>
-                </div>
+                    </div>
                 </form>        
             </div>
         </div> 

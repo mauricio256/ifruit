@@ -35,11 +35,14 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
-    <body>
-                    <div class="card pt-4">
-                        <div class="card-body bg-light m-3 ">
-                        <h3 class="text-center">Cadastro de Funcionário</h3><hr>
-                          <div style=" overflow-y: scroll;"> 
+    <body >
+            <div class="card pt-4 p-5">
+                <div class="card-body bg-light shadow m-3 ">
+                        <div class="text-start">
+                            <a href="painel.php" class="btn btn-outline-danger">Voltar</a> 
+                        </div>
+                        <h3 class="text-center">Funcionários Cadastrados</h3><hr>
+                        <div style=" overflow-y: scroll;"> 
                             <table class="table  table-striped ">
                                 <thead class="table-primary">
                                     <tr>
@@ -93,12 +96,12 @@
                                         </tr>           
                                     <?php } endif; ?> 
                                 </tbody>
-                            </table><br></br><br>
-                        </div>                   
-
-
-                                        <form action="php/processa_cadastro_funcionario.php" enctype="multipart/form-data" method="POST" class="p-3">
-                                            <h3 class="text-center">Dados Pessoais</h3><hr>
+                            </table><br><br>
+                        </div>   
+            </div>     
+            <div class="card-body bg-light shadow m-3">
+                                <form action="php/processa_cadastro_funcionario.php" enctype="multipart/form-data" method="POST" class="p-3">
+                                           <h3 class="text-center">Cadastro de Funcionário</h3><hr>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="text-center">
@@ -167,9 +170,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div>
+                                   
 
-                                    <div class="card-body bg-light m-3 ">    
+                                    
                                             <h3 class="text-center">Endereço</h3><hr>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
@@ -212,7 +215,7 @@
                                                                 </select>
                                                             </div>
                                                  </div> 
-                                            </div> 
+                                         </div>    
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
                                                     <div class="form-floating">
@@ -242,8 +245,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div>
-                                    <div class="card-body bg-light m-3 ">    
+                                    
+                                       
                                             <h3 class="text-center">Empresa</h3><hr> 
                                             <div class="row mb-3">   
                                                 <div class="col-md-6">
@@ -264,16 +267,17 @@
                                                             </select>
                                                         </div>
                                                 </div>                          
+                                 
+
+                                    <div class="mt-3 text-end">
+                                        <a href="painel.php" class="btn btn-outline-danger">Voltar</a>
+                                        <button type="submit" class="btn btn-info" onclick ="return msg_salvando()">Cadastrar</button>   
                                     </div>
-                                    <div class="card-body bg-light  ">
-                                  
-                                        <div class="mt-5 text-end">
-                                            <a href="painel.php" class="btn btn-outline-danger">Voltar</a>
-                                            <button type="submit" class="btn btn-info" onclick ="return msg_salvando()">Cadastrar</button>   
-                                        </div>
-                                </form>        
-                            </div>
-                        </div> 
+                                </div>     
+                            </div>    
+                        </form>    
+            </div> 
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script>

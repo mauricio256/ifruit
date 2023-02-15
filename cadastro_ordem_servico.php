@@ -62,62 +62,98 @@ function busca_funcionario($cod_funcionario){
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="card pt-4 w-100">
-            <div class="card-body bg-light m-3">
-            <form action="php/processa_cadastro_os.php" method="POST" class="p-3">
-                <h3 class="text-center">Criar Ordem de Serviço</h3><hr>
+        <div class="card p-5 pt-4 w-100">
+            <div class="card-body bg-light m-3 ">
+                <div class=" text-start">
+                    <a href="painel.php" class="btn btn-outline-danger">Voltar</a> 
+                </div>
+                <h3 class="text-center">Ordens de serviço</h3>
                 <div class="mb-3">
-                    <table class="table table-striped">
-                                <thead class="table-primary">
-                                    <tr>
-                                        <th scope="col">Código OS</th>
-                                        <th scope="col">Lote</th>
-                                        <th scope="col">Válvula</th>
-                                        <th scope="col">Fiscal</th>
-                                        <th scope="col">Usuário</th>
-                                        <th scope="col">Tipo de OS</th>
-                                        <th scope="col">Conteúdo</th>
-                                        <th scope="col">Produtos</th>
-                                        <th scope="col">Meta</th>
-                                        <th scope="col">Colhida</th>
-                                        <th scope="col">Criada</th>
-                                        <th scope="col">Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if(ordem_servico()): 
-                                        foreach(ordem_servico() as $row){ ?> 
+                    <div style=" overflow-y: scroll;"> 
+                        <table class="table table-striped">
+                                    <thead class="table-primary">
                                         <tr>
-                                            <th scope="row"><?php print $row['cod_os_pk']; ?></th>
-                                            <th ><?php print $row['cod_lote_fk']; ?></th>
-                                            <td><?php print $row['cod_valvula_fk']; ?></td>
-                                            <td><?php print $row['fiscal']; ?></td>
-                                            <td><?php foreach (busca_funcionario($row['cod_funcionario_fk']) as $row2){print $row2['nome'];} ?></td>
-                                            <td><?php print $row['tipo_os']; ?></td>
-                                            <td><?php print $row['conteudo']; ?></td>
-                                            <td><button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#staticBackdrop">Visualizar</button></td>
-                                            <td><?php print $row['meta']; ?></td>
-                                            <td><?php print $row['colhida']; ?></td>
-                                            <td><?php print $row['data_criacao']; ?></td>
-                                            <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_os.php?cod_os=<?php print $row['cod_os_pk']; ?>">Excluir</a></td>
-                                        </tr>           
-                                    <?php } endif; ?> 
-                                </tbody>
-                    </table>
+                                            <th scope="col">Código OS</th>
+                                            <th scope="col">Lote</th>
+                                            <th scope="col">Válvula</th>
+                                            <th scope="col">Fiscal</th>
+                                            <th scope="col">Usuário</th>
+                                            <th scope="col">Tipo de OS</th>
+                                            <th scope="col">Conteúdo</th>
+                                            <th scope="col">Produtos</th>
+                                            <th scope="col">Meta</th>
+                                            <th scope="col">Colhida</th>
+                                            <th scope="col">Criada</th>
+                                            <th scope="col">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if(ordem_servico()): 
+                                            foreach(ordem_servico() as $row){ ?> 
+                                            <tr>
+                                                <th scope="row"><?php print $row['cod_os_pk']; ?></th>
+                                                <th ><?php print $row['cod_lote_fk']; ?></th>
+                                                <td><?php print $row['cod_valvula_fk']; ?></td>
+                                                <td><?php print $row['fiscal']; ?></td>
+                                                <td><?php foreach (busca_funcionario($row['cod_funcionario_fk']) as $row2){print $row2['nome'];} ?></td>
+                                                <td><?php print $row['tipo_os']; ?></td>
+                                                <td><?php print $row['conteudo']; ?></td>
+                                                <td><button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#staticBackdrop">Visualizar</button></td>
+                                                <td><?php print $row['meta']; ?></td>
+                                                <td><?php print $row['colhida']; ?></td>
+                                                <td><?php print $row['data_criacao']; ?></td>
+                                                <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_os.php?cod_os=<?php print $row['cod_os_pk']; ?>">Excluir</a></td>
+                                            </tr>           
+                                        <?php } endif; ?> 
+                                    </tbody>
+                        </table>
+                    </div><br><br><br>
+            </div>
+        </div>
 
-                        <div class="card-body bg-light  ">
+        <div class="card-body bg-light m-3">
+            <div>
+                <form action="php/processa_cadastro_os.php" method="POST" class="p-3">
+                    <h3 class="text-center">Cadastrar ordem de serviço</h3><br>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
                             <div class="mt-5 text-end">
                                 <a href="painel.php" class="btn btn-outline-danger">Voltar</a>
                                 <button type="submit" class="btn btn-info">Cadastrar</button>   
                             </div>
-                        </div>
-                </div>
                 </form> 
-            </div> 
-            
+            </div>     
         </div>
 
-                                            
+                     
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <!-- Modal lista de produtos OS -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -149,19 +185,12 @@ function busca_funcionario($cod_funcionario){
         <script>
 
             function confirma_deleta() {
-
                 if (confirm("Deseja mesmo DELETAR?")) {
-
                     return true;
-
                 } else {
-
                     return false;
-
                 }
-
             }
-
-</script>
+        </script>
     </body>
 </html>

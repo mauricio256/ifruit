@@ -133,7 +133,7 @@
                 </nav>
             </div>        
         </div>   
-        <footer class="py-4 pb-5 bg-dark">
+        <footer class="p-4 bg-dark">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; ifruit 2022</div>
