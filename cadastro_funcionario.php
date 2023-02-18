@@ -98,8 +98,20 @@
                                 </tbody>
                             </table><br><br>
                         </div>   
-            </div>     
-            <div class="card-body bg-light shadow m-3">
+            </div>
+
+<div class="card-body">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button class="btn btn-primary collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Cadastrar novo funcionário
+                </button>
+            </h2>
+            <br>
+<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+    
+<div class="card-body bg-light shadow">
                                 <form action="php/processa_cadastro_funcionario.php" enctype="multipart/form-data" method="POST" class="p-3">
                                            <h3 class="text-center">Cadastro de Funcionário</h3><hr>
                                             <div class="row mb-3">
@@ -270,13 +282,16 @@
                                  
 
                                     <div class="mt-3 text-end">
-                                        <a href="painel.php" class="btn btn-outline-danger">Voltar</a>
+                                        <a href="cadastro_funcionario.php" class="btn btn-outline-danger">Fechar</a>
                                         <button type="submit" class="btn btn-info" onclick ="return msg_salvando()">Cadastrar</button>   
                                     </div>
                                 </div>     
                             </div>    
                         </form>    
             </div> 
+    </div>
+</div>
+            
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

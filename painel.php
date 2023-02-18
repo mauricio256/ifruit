@@ -76,7 +76,7 @@
         
         <?php if($_SESSION['login']['funcao'] == "fiscal"):?>
  
-        <div id="layoutSidenav" style="height: 80%;">
+        <div id="layoutSidenav" style="height: 800px;">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
@@ -141,6 +141,8 @@
                         </div>
                     </div>
         </footer>
+    </body>
+        
     <!-- FIM DA LISTA ORDENS DE SERVIÇO  -->
      
            
@@ -327,11 +329,14 @@
 
                
     <!-- ///////////////////////////////////////////// FIM da condicao de TELA DE FUNCIONARIO logado/////////////////////////////////////////////////////////////////// -->
-        
-    
-    
-    
+
     <?php endif; ?> 
+
+
+
+
+
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
 

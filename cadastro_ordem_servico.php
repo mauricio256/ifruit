@@ -43,6 +43,42 @@ function busca_funcionario($cod_funcionario){
     endif; 
 }
 
+function busca_funcionario_usuario(){
+    $conn = conecta();
+    $query = $conn->query("SELECT * FROM funcionario WHERE funcao = 'usuario' ");
+    if($query->fetch()):   //// verifica se a query retorna algum valor caso nao, dado nao possui no banco 
+        $query->execute();     /// execulta a query
+        $conn = NULL;
+        return $query->fetchALL(PDO::FETCH_ASSOC);   ///returna um objeto com todos os valores da quary
+    else:
+       return NULL;
+    endif; 
+}
+
+function lote(){
+    $conn = conecta();
+    $query = $conn->query("SELECT * FROM lote");
+    if($query->fetch()):   //// verifica se a query retorna algum valor caso nao, dado nao possui no banco 
+        $query->execute();     /// execulta a query
+        $conn = NULL;
+        return $query->fetchALL(PDO::FETCH_ASSOC);   ///returna um objeto com todos os valores da quary
+    else:
+       return NULL;
+    endif; 
+}
+
+function valvula(){
+    $conn = conecta();
+    $query = $conn->query("SELECT * FROM valvula");
+    if($query->fetch()):   //// verifica se a query retorna algum valor caso nao, dado nao possui no banco 
+        $query->execute();     /// execulta a query
+        $conn = NULL;
+        return $query->fetchALL(PDO::FETCH_ASSOC);   ///returna um objeto com todos os valores da quary
+    else:
+       return NULL;
+    endif; 
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -84,6 +120,7 @@ function busca_funcionario($cod_funcionario){
                                             <th scope="col">Meta</th>
                                             <th scope="col">Colhida</th>
                                             <th scope="col">Criada</th>
+                                            <th scope="col"></th>
                                             <th scope="col">Ações</th>
                                         </tr>
                                     </thead>
@@ -91,45 +128,117 @@ function busca_funcionario($cod_funcionario){
                                         <?php if(ordem_servico()): 
                                             foreach(ordem_servico() as $row){ ?> 
                                             <tr>
-                                                <th scope="row"><?php print $row['cod_os_pk']; ?></th>
+                                                <th ><?php print $row['cod_os_pk']; ?></th>
                                                 <th ><?php print $row['cod_lote_fk']; ?></th>
                                                 <td><?php print $row['cod_valvula_fk']; ?></td>
                                                 <td><?php print $row['fiscal']; ?></td>
-                                                <td><?php foreach (busca_funcionario($row['cod_funcionario_fk']) as $row2){print $row2['nome'];} ?></td>
+                                                <td><?php foreach (busca_funcionario($row['cod_funcionario_fk']) as $row2){print $row2['nome']." ".$row2['sobrenome'];} ?></td>
                                                 <td><?php print $row['tipo_os']; ?></td>
                                                 <td><?php print $row['conteudo']; ?></td>
                                                 <td><button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#staticBackdrop">Visualizar</button></td>
                                                 <td><?php print $row['meta']; ?></td>
                                                 <td><?php print $row['colhida']; ?></td>
                                                 <td><?php print $row['data_criacao']; ?></td>
+                                                <td> <a class="btn btn-warning btn-sm" href="php/editar_os.php?cod_os=<?php print $row['cod_os_pk']; ?>">Editar</a></td>
                                                 <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_os.php?cod_os=<?php print $row['cod_os_pk']; ?>">Excluir</a></td>
                                             </tr>           
                                         <?php } endif; ?> 
                                     </tbody>
                         </table>
-                    </div><br><br><br>
+                    </div>
             </div>
         </div>
 
-        <div class="card-body bg-light m-3">
-            <div>
-                <form action="php/processa_cadastro_os.php" method="POST" class="p-3">
-                    <h3 class="text-center">Cadastrar ordem de serviço</h3><br>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                            <div class="mt-5 text-end">
-                                <a href="painel.php" class="btn btn-outline-danger">Voltar</a>
-                                <button type="submit" class="btn btn-info">Cadastrar</button>   
+<div class="card-body">
+
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+            <button class="btn btn-primary collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                Cadastrar nova Ordem de serviço
+            </button>
+        </h2>
+        <br>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+
+            <div class="card-body bg-light">
+                    <div>
+                        <form action="php/processa_cadastro_os.php" method="POST" class="p-3">
+
+                            <input type="text" name="fiscal" hidden value="<?php print $_SESSION['login']['nome']." ".$_SESSION['login']['sobrenome']; ?>">
+
+                            <h3 class="text-center">Cadastrar ordem de serviço</h3><br>
+                            <label for="exampleFormControlTextarea1" class="form-label">Selecione o lote</label>
+                            <select class="form-select" required name="cod_lote" aria-label="Default select example">
+                            <option selected></option>
+
+                                <?php foreach(lote() as $row){ ?>                    
+                                    <option value="<?php print $row['cod_lote_pk']; ?>"><strong>Lote: <?php print $row['cod_lote_pk']; ?> (<?php print $row['descricao']; ?>)</option>
+                                <?php } ?> 
+
+                            </select>
+                            <br>
+                            <label for="exampleFormControlTextarea1" class="form-label">Selecione a válvula</label>
+                            <select class="form-select" required name="cod_valvula" aria-label="Default select example">
+                            <option selected></option>
+
+                                <?php foreach(valvula() as $row){ ?>                    
+                                    <option value="<?php print $row['cod_valvula_pk']; ?>"><strong>Valvula: <?php print $row['cod_valvula_pk']; ?> (<?php print $row['descricao']; ?>)</option>
+                                <?php } ?> 
+
+                            </select>
+                            <br>
+                            <br>
+                            <label for="exampleFormControlTextarea1" class="form-label">Selecione o usuário</label>
+                            <select class="form-select" required name="funcionario" aria-label="Default select example">
+                            <option selected></option>
+
+                                <?php foreach(busca_funcionario_usuario() as $row){ ?>                    
+                                    <option value="<?php print $row['cod_funcionario_pk'];?>"><strong> Código: <?php print $row['cod_funcionario_pk']." - ( ". $row['nome'] ." ". $row['sobrenome']; ?> )</option>
+                                <?php } ?> 
+
+                            </select>
+                            <br>
+                            <br>
+                            <label for="exampleFormControlTextarea1" class="form-label">Tipo de OS</label>
+                            <select class="form-select"  required name="tipo_os" aria-label="Default select example">
+                            <option selected></option>           
+                                    <option value="Atividades"><strong>ATIVIDADES</strong></option>
+                                    <option value="Pulverização"><strong>PULVERIZAÇÃO</strong></option>
+                                    <option value="Adubação"><strong>ADUBAÇÃO</strong></option>
+                            </select>
+                            <br>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Conteúdo</label>
+                                <textarea class="form-control" name="conteudo" placeholder="Ex: Colher todas as uvas da válvula" id="exampleFormControlTextarea1" rows="3"></textarea>
                             </div>
-                </form> 
-            </div>     
-        </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Meta</label>
+                                <input type="number" class="form-control" name="meta" id="exampleFormControlInput1" placeholder="Apenas números (Digite 0 se não tiver meta)" >
+                            </div><br>
+                            <hr>
+                            <div class="alert d-flex align-items-center" role="alert">
+                                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                                <div>
+                                    ATENÇÃO: Os produtos são adicionados após a Ordem de serviço ser criada
+                                </div>
+                            </div><hr>
+
+
+
+                                    <div class="mt-5 text-end">
+                                        <a href="cadastro_ordem_servico.php" class="btn btn-outline-danger">Fechar</a>
+                                        <button type="submit" class="btn btn-info">Cadastrar</button>   
+                                    </div>
+                        </form> 
+                    </div>     
+                </div>
+
+    </div><br><br><br>
+  </div>
+</div>
+
+       
 
                      
         
@@ -173,7 +282,7 @@ function busca_funcionario($cod_funcionario){
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                             </div>
                         </div>
                     </div>

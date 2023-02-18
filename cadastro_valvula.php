@@ -88,57 +88,67 @@ function lote(){
                     </div> <br><br>
                 </div>    
             </div>
+        <div class="card-body">                                       
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="btn btn-primary collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Cadastrar nova Válvula
+                        </button>
+                    </h2><br>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
             
-            <div class="card-body bg-light shadow m-3">
-                <h3 class="text-center">Cadastro de válvula</h3><hr>
-                <form action="php/processa_cadastro_valvula.php" method="POST" class="p-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Selecione o lote da válvula</label>
-                    <select class="form-select" required name="cod_lote" aria-label="Default select example">
-                    <option selected></option>
+                <div class="card-body bg-light shadow">
+                    <h3 class="text-center">Cadastro de válvula</h3><hr>
+                    <form action="php/processa_cadastro_valvula.php" method="POST" class="p-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Selecione o lote da válvula</label>
+                        <select class="form-select" required name="cod_lote" aria-label="Default select example">
+                        <option selected></option>
 
-                        <?php foreach(lote() as $row){ ?>                    
-                            <option value="<?php print $row['cod_lote_pk']; ?>"><strong>Lote: <?php print $row['cod_lote_pk']; ?> (<?php print $row['descricao']; ?>)</option>
-                        <?php } ?> 
+                            <?php foreach(lote() as $row){ ?>                    
+                                <option value="<?php print $row['cod_lote_pk']; ?>"><strong>Lote: <?php print $row['cod_lote_pk']; ?> (<?php print $row['descricao']; ?>)</option>
+                            <?php } ?> 
 
-                    </select><br>
-                        <label for="exampleFormControlInput1" class="form-label">Número da Valvula</label>
-                        <input type="number" required class="form-control" name="cod_valvula" id="exampleFormControlInput1" placeholder="">
-            
-                            <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-                                <textarea class="form-control" required name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div> 
+                        </select><br>
+                            <label for="exampleFormControlInput1" class="form-label">Número da Valvula</label>
+                            <input type="number" required class="form-control" name="cod_valvula" id="exampleFormControlInput1" placeholder="">
+                
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
+                                    <textarea class="form-control" required name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div> 
 
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Variedade</label>
-                                <input type="text" required class="form-control" name="variedade" id="exampleFormControlInput1" placeholder="">                            
-                            </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Variedade</label>
+                                    <input type="text" required class="form-control" name="variedade" id="exampleFormControlInput1" placeholder="">                            
+                                </div>
 
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Quantidade de plantas</label>
-                                <input type="number" required class="form-control" name="numero_plantas" id="exampleFormControlInput1" placeholder="">
-                            </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Quantidade de plantas</label>
+                                    <input type="number" required class="form-control" name="numero_plantas" id="exampleFormControlInput1" placeholder="">
+                                </div>
 
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Área</label>
-                                <input type="text" required class="form-control" name="area" id="exampleFormControlInput1" placeholder="">
-                            </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Área</label>
+                                    <input type="text" required class="form-control" name="area" id="exampleFormControlInput1" placeholder="">
+                                </div>
 
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Escapamento</label>
-                                <input type="text" required class="form-control" name="escapamento" id="exampleFormControlInput1" placeholder="">
-                            </div>
-                       
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Escapamento</label>
+                                    <input type="text" required class="form-control" name="escapamento" id="exampleFormControlInput1" placeholder="">
+                                </div>
+                        
 
-                  
-                            <div class="mt-5 text-end">
-                                <a href="painel.php" class="btn btn-outline-danger">Voltar</a>
-                                <button type="submit" class="btn btn-info">Cadastrar</button>   
-                            </div>
-                    </div>
-                </form>        
-            </div>
-        </div> 
+                    
+                                <div class="mt-5 text-end">
+                                    <a href="cadastro_valvula.php" class="btn btn-outline-danger">Fechar</a>
+                                    <button type="submit" class="btn btn-info">Cadastrar</button>   
+                                </div>
+                        </div>
+                    </form>        
+                </div>
+            </div>    
+        </div> <br><br><br>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script>
