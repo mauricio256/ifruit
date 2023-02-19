@@ -7,13 +7,25 @@
         header('Location:../php/index.html');
     endif;
 
-    function produto_os(){
+    function produto_os($cod_os_fk){
         $conn = conecta();
-        $query = $conn->query("SELECT * FROM produto_os");
+        $query = $conn->query("SELECT * FROM produto_os WHERE cod_os_fk = $cod_os_fk ");
         if($query->fetch()):   //// verifica se a query retorna algum valor caso nao, dado nao possui no banco 
             $query->execute();     /// execulta a query
             $conn = NULL;
             return $query->fetchALL(PDO::FETCH_ASSOC);   ///returna um objeto com todos os valores da quary
+        else:
+           return NULL;
+        endif; 
+    }
+
+    function produto($cod_produto){
+        $conn = conecta();
+        $query = $conn->query("SELECT descricao FROM produto WHERE cod_produto_pk = $cod_produto");
+        if($query->fetch()):   //// verifica se a query retorna algum valor caso nao, dado nao possui no banco 
+            $query->execute();     /// execulta a query
+            $conn = NULL;
+            return $query->fetch(PDO::FETCH_ASSOC);   ///returna um objeto com  o valor da quary
         else:
            return NULL;
         endif; 
@@ -100,7 +112,7 @@
                                     <a class="nav-link" href="cadastro_valvula.php">Válvula</a>
                                     <a class="nav-link" href="cadastro_linha.php">Linha</a>
                                     <a class="nav-link" href="cadastro_ordem_servico.php">Ordem de Serviço</a>
-                                    <a class="nav-link" href="#">Produto</a>
+                                    <a class="nav-link" href="cadastro_produto.php">Produto</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -204,12 +216,38 @@
                             <?php if(ordem_servico_atividades($_SESSION['login']['cod_funcionario_pk'])):
                                 foreach(ordem_servico_atividades($_SESSION['login']['cod_funcionario_pk']) as $row){ ?> 
                                 
-                                <div class="col-6">
-                                    <div class="card mb-3">
-                                        <p class="btn btn-warning">Lote: <?php print $row['cod_lote_fk']; ?> | Válvula: <?php print $row['cod_lote_fk']; ?></p>
+                                <div class="col-12">
+                                    <div class="card mb-3 bg-light">
+                                        <p class="btn btn-warning"> Lote: <?php print $row['cod_lote_fk']; ?> | Válvula: <?php print $row['cod_lote_fk']; ?></p>
                                         <div class="card-body">
+                                            <p class="card-text"><strong>OS:</strong><br> <?php print $row['cod_os_pk']; ?></p>
                                             <p class="card-text"><strong>Fiscal:</strong><br> <?php print $row['fiscal']; ?></p>
                                             <p class="card-text"><strong>Conteúdo:</strong><br> <?php print $row['conteudo']; ?></p>
+                                            <p class="card-text"><strong>Produtos:</strong></p>
+
+                                            <!-- Impressao de produtos da OS em questao-->
+                                            <div class="bg-white">
+                                            <?php if(produto_os($row['cod_os_pk'])): ?>
+                                                <table class="table">
+                                                    <thead class="table-primary">
+                                                        <tr>
+                                                            <th scope="col">Descrição</th>
+                                                            <th scope="col" class="text-center">Quantidade</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        
+                                                        <?php    foreach(produto_os($row['cod_os_pk']) as $row_produtos){ ?>
+                                                            <tr>
+                                                                <th scope="row"><?php print produto($row_produtos['cod_produto_fk'])['descricao']; ?></th>
+                                                                <th scope="row" class="text-center"><?php print $row_produtos['quantidade']; ?></th>
+                                                                
+                                                            </tr> 
+                                                            <?php } else:  print " &nbsp;&nbsp;&nbsp;<em>Não há produtos cadastrados</em>"; endif; ?> 
+                                                    </tbody>
+                                                </table>
+                                            </div><br>  
+
                                             <p class="card-text"><strong>Meta:</strong> <?php print $row['meta']; ?>
                                             <p class="card-text"><strong>Concluidos:</strong> <?php print $row['colhida']; ?></p>
                                         </div>
@@ -249,17 +287,42 @@
                             <?php if(ordem_servico_pulverizacao($_SESSION['login']['cod_funcionario_pk'])):
                                 foreach(ordem_servico_pulverizacao($_SESSION['login']['cod_funcionario_pk']) as $row){ ?> 
                                 
-                                <div class="col-6">
+                                 <!-- FIM da impressao de produtos -->
+                                <div class="col-12">
                                     <div class="card mb-3">
                                         <p class="btn btn-warning">Lote: <?php print $row['cod_lote_fk']; ?> | Válvula: <?php print $row['cod_lote_fk']; ?></p>
                                         <div class="card-body">
                                             <p class="card-text"><strong>Fiscal:</strong><br> <?php print $row['fiscal']; ?></p>
                                             <p class="card-text"><strong>Conteúdo:</strong><br> <?php print $row['conteudo']; ?></p>
+                                            <p class="card-text"><strong>Produtos:</strong></p>
+                                                <!-- Impressao de produtos da OS em questao-->
+                                                <div class="bg-white">
+                                                    <?php if(produto_os($row['cod_os_pk'])): ?>
+                                                    <table class="table">
+                                                        <thead class="table-primary">
+                                                            <tr>
+                                                                <th scope="col">Descrição</th>
+                                                                <th scope="col" class="text-center">Quantidade</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            
+                                                              <?php  foreach(produto_os($row['cod_os_pk']) as $row_produtos){ ?>
+                                                                <tr>
+                                                                    <th scope="row"><?php print produto($row_produtos['cod_produto_fk'])['descricao']; ?></th>
+                                                                    <th scope="row" class="text-center"><?php print $row_produtos['quantidade']; ?></th>
+                                                                    
+                                                                </tr> 
+                                                                <?php } else:  print " &nbsp;&nbsp;&nbsp;<em>Não há produtos cadastrados</em>"; endif; ?> 
+                                                        </tbody>
+                                                    </table>
+                                                </div><br> 
+                                            
                                             <p class="card-text"><strong>Meta:</strong> <?php print $row['meta']; ?>
                                             <p class="card-text"><strong>Concluidos:</strong> <?php print $row['colhida']; ?></p>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>  
 
                             <?php } else:print"<br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nenhum registro encontrado</p>"; endif;?>
                             <!-- FIM da impressao dos valores do banco -->
@@ -294,12 +357,37 @@
                             <?php if(ordem_servico_adubacao($_SESSION['login']['cod_funcionario_pk'])):
                                 foreach(ordem_servico_adubacao($_SESSION['login']['cod_funcionario_pk']) as $row){ ?> 
                                 
-                                <div class="col-6">
+                                <!-- FIM da impressao de produtos -->
+                                <div class="col-12">
                                     <div class="card mb-3">
                                         <p class="btn btn-warning">Lote: <?php print $row['cod_lote_fk']; ?> | Válvula: <?php print $row['cod_lote_fk']; ?></p>
                                         <div class="card-body">
                                             <p class="card-text"><strong>Fiscal:</strong><br> <?php print $row['fiscal']; ?></p>
                                             <p class="card-text"><strong>Conteúdo:</strong><br> <?php print $row['conteudo']; ?></p>
+                                            <p class="card-text"><strong>Produtos:</strong></p>
+                                                <!-- Impressao de produtos da OS em questao-->
+                                                <div class="bg-white">
+                                                <?php if(produto_os($row['cod_os_pk'])): ?>
+                                                    <table class="table">
+                                                        <thead class="table-primary">
+                                                            <tr>
+                                                                <th scope="col">Descrição</th>
+                                                                <th scope="col" class="text-center">Quantidade</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            
+                                                            <?php  foreach(produto_os($row['cod_os_pk']) as $row_produtos){ ?>
+                                                                <tr>
+                                                                    <th scope="row"><?php print produto($row_produtos['cod_produto_fk'])['descricao']; ?></th>
+                                                                    <th scope="row" class="text-center"><?php print $row_produtos['quantidade']; ?></th>
+                                                                    
+                                                                </tr> 
+                                                                <?php } else: print " &nbsp;&nbsp;&nbsp;<em>Não há produtos cadastrados</em>"; endif; ?> 
+                                                        </tbody>
+                                                    </table>
+                                                </div><br> 
+      
                                             <p class="card-text"><strong>Meta:</strong> <?php print $row['meta']; ?>
                                             <p class="card-text"><strong>Concluidos:</strong> <?php print $row['colhida']; ?></p>
                                         </div>

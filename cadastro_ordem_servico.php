@@ -135,7 +135,7 @@ function valvula(){
                                                 <td><?php foreach (busca_funcionario($row['cod_funcionario_fk']) as $row2){print $row2['nome']." ".$row2['sobrenome'];} ?></td>
                                                 <td><?php print $row['tipo_os']; ?></td>
                                                 <td><?php print $row['conteudo']; ?></td>
-                                                <td><button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#staticBackdrop">Visualizar</button></td>
+                                                <td><a class="btn btn-primary btn-sm"  href="produtos_os.php?cod_os=<?php print $row['cod_os_pk']; ?>">Visualizar</a></td>
                                                 <td><?php print $row['meta']; ?></td>
                                                 <td><?php print $row['colhida']; ?></td>
                                                 <td><?php print $row['data_criacao']; ?></td>
@@ -236,59 +236,7 @@ function valvula(){
 
     </div><br><br><br>
   </div>
-</div>
-
-       
-
-                     
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <!-- Modal lista de produtos OS -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Lista de produtos</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <?php if(produto_os()): 
-                                    foreach(produto_os() as $row){ ?> 
-
-                                        Cod do produto:<?php print $row['cod_produto_fk']; ?><br>
-                                        Quantidade: <?php print $row['quantidade']; ?><br><hr>
-
-                                <?php } else:print"<br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nenhum registro encontrado</p>"; endif; ?>       
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-        
+</div>       
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script>
