@@ -98,11 +98,10 @@ function valvula(){
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="card p-5 pt-4 w-100">
-            <div class="card-body bg-light m-3 ">
+        <div class="p-3 pt-4 bg-light h-100 ">
                 <div class=" text-start">
-                    <a href="painel.php" class="btn btn-outline-danger">Voltar</a> 
-                </div>
+                    <a href="painel.php" class="btn btn-outline-danger btn-sm">Voltar</a> 
+                </div><br>
                 <h3 class="text-center">Ordens de serviço</h3>
                 <div class="mb-3">
                     <div style=" overflow-y: scroll;"> 
@@ -139,7 +138,7 @@ function valvula(){
                                                 <td><?php print $row['meta']; ?></td>
                                                 <td><?php print $row['colhida']; ?></td>
                                                 <td><?php print $row['data_criacao']; ?></td>
-                                                <td> <a class="btn btn-warning btn-sm" href="php/editar_os.php?cod_os=<?php print $row['cod_os_pk']; ?>">Editar</a></td>
+                                                <td> </td>
                                                 <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_os.php?cod_os=<?php print $row['cod_os_pk']; ?>">Excluir</a></td>
                                             </tr>           
                                         <?php } endif; ?> 
@@ -147,27 +146,19 @@ function valvula(){
                         </table>
                     </div>
             </div>
-        </div>
 
-<div class="card-body">
-
-<div class="accordion accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingOne">
+        <h2 class="accordion-header p-3" id="flush-headingOne">
             <button class="btn btn-primary collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                 Cadastrar nova Ordem de serviço
             </button>
-        </h2>
-        <br>
-    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        </h2><br>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
 
-            <div class="card-body bg-light">
-                    <div>
                         <form action="php/processa_cadastro_os.php" method="POST" class="p-3">
 
                             <input type="text" name="fiscal" hidden value="<?php print $_SESSION['login']['nome']." ".$_SESSION['login']['sobrenome']; ?>">
 
-                            <h3 class="text-center">Cadastrar ordem de serviço</h3><br>
+                            <h3 class="text-center">Cadastrar ordem de serviço</h3><hr>
                             <label for="exampleFormControlTextarea1" class="form-label">Selecione o lote</label>
                             <select class="form-select" required name="cod_lote" aria-label="Default select example">
                             <option selected></option>
@@ -188,7 +179,7 @@ function valvula(){
 
                             </select>
                             <br>
-                            <br>
+                            
                             <label for="exampleFormControlTextarea1" class="form-label">Selecione o usuário</label>
                             <select class="form-select" required name="funcionario" aria-label="Default select example">
                             <option selected></option>
@@ -199,7 +190,7 @@ function valvula(){
 
                             </select>
                             <br>
-                            <br>
+                            
                             <label for="exampleFormControlTextarea1" class="form-label">Tipo de OS</label>
                             <select class="form-select"  required name="tipo_os" aria-label="Default select example">
                             <option selected></option>           
@@ -217,11 +208,10 @@ function valvula(){
                                 <input type="number" class="form-control" name="meta" id="exampleFormControlInput1" placeholder="Apenas números (Digite 0 se não tiver meta)" >
                             </div><br>
                             <hr>
-                            <div class="alert d-flex align-items-center" role="alert">
-                                <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
-                                <div>
+                            <div class="alert d-flex text-center" role="alert">
+                               
                                     ATENÇÃO: Os produtos são adicionados após a Ordem de serviço ser criada
-                                </div>
+                          
                             </div><hr>
 
 
@@ -231,12 +221,9 @@ function valvula(){
                                         <button type="submit" class="btn btn-info">Cadastrar</button>   
                                     </div>
                         </form> 
-                    </div>     
-                </div>
-
-    </div><br><br><br>
-  </div>
-</div>       
+        </div>     
+    </div>
+   
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script>

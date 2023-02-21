@@ -60,13 +60,11 @@ function linha(){
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="card p-5 pt-4 w-100">
-            <div class="card-body bg-light shadow m-3">
+        <div class="bg-light pt-4 p-3 h-100">
                 <div class=" text-start">
-                    <a href="painel.php" class="btn btn-outline-danger">Voltar</a> 
-                </div>
+                    <a href="painel.php" class="btn btn-outline-danger btn-sm ">Voltar</a> 
+                </div><br>
                 <h3 class="text-center">Linhas Cadastradas</h3><hr>
-                <div class="mb-3">
                     <div style=" overflow-y: scroll;"> 
                         <table class="table table-striped">
                                     <thead class="table-primary">
@@ -91,23 +89,17 @@ function linha(){
                                         <?php } endif;?> 
                                     </tbody>
                         </table>
-                    </div><br><br>
-                </div>    
-            </div>
-            
-        <div class="card-body">                                       
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOne">
+                    </div>  
+                <br>                         
+                <h2 class="accordion-header" id="flush-headingOne">
                         <button class="btn btn-primary collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                             Cadastrar nova Linha
                         </button>
-                    </h2><br>
+                </h2> <br>  
+
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            
-            <div class="card-body bg-light shadow">
             <h3 class="text-center">Cadastro de linha</h3><hr>
-                <form action="php/processa_cadastro_linha.php" method="POST" class="p-3">
+                <form action="php/processa_cadastro_linha.php" method="POST">
                     <label for="exampleFormControlTextarea1" class="form-label">Selecione o lote da válvula</label>
                     <select class="form-select" required name="cod_lote" aria-label="Default select example">
                     <option selected></option>
@@ -138,11 +130,9 @@ function linha(){
                         <div class="mt-3 text-end">
                             <a href="cadastro_linha.php" class="btn btn-outline-danger">Fechar</a>
                             <button type="submit" class="btn btn-info" onclick ="return msg_salvando()">Cadastrar</button>   
-                        </div>
-          
-                </div>              
+                        </div>            
             </form> 
-        </div><br><br><br> 
+        </div><br>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script>

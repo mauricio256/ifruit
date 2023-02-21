@@ -35,12 +35,12 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
-    <body >
-            <div class="card pt-4 p-5">
-                <div class="card-body bg-light shadow m-3 ">
+    <body>
+     <div class=" p-3  bg-light h-100">  
+        <div class="bg-light pt-5">
                         <div class="text-start">
-                            <a href="painel.php" class="btn btn-outline-danger">Voltar</a> 
-                        </div>
+                            <a href="painel.php" class="btn btn-outline-danger btn-sm ">Voltar</a> 
+                        </div><br>
                         <h3 class="text-center">Funcionários Cadastrados</h3><hr>
                         <div style=" overflow-y: scroll;"> 
                             <table class="table  table-striped ">
@@ -63,8 +63,8 @@
                                         <th scope="col">Logradouro</th>
                                         <th scope="col">Número</th>
                                         <th scope="col">Cadastro</th>
-                                        <th scope="col">Ações</th>
                                         <th scope="col"></th>
+                                        <th scope="col">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -91,28 +91,23 @@
                                             <td><?php print $row['endereco']; ?></td>
                                             <td><?php print $row['numero']; ?></td>
                                             <td><?php print $row['cadastro']; ?></td>
-                                            <td> <a class="btn btn-primary btn-sm" href="php/.php?cod_funcionario=<?php print $row['cod_funcionario_pk']; ?>">Editar</a></td>
+                                            <td></td>
                                             <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_funcionario.php?cod_funcionario=<?php print $row['cod_funcionario_pk']; ?>&caminho_img=<?php print $row['foto']; ?>">Excluir</a></td>
                                         </tr>           
                                     <?php } endif; ?> 
                                 </tbody>
-                            </table><br><br>
-                        </div>   
-            </div>
+                            </table>
+                        </div><br>   
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="btn btn-primary collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Cadastrar novo funcionário
+                    </button>
+                </h2><br>
+        </div>
 
-<div class="card-body">
-    <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-                <button class="btn btn-primary collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    Cadastrar novo funcionário
-                </button>
-            </h2>
-            <br>
-<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-    
-<div class="card-body bg-light shadow">
-                                <form action="php/processa_cadastro_funcionario.php" enctype="multipart/form-data" method="POST" class="p-3">
+   
+        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <form action="php/processa_cadastro_funcionario.php" enctype="multipart/form-data" method="POST" >
                                            <h3 class="text-center">Cadastro de Funcionário</h3><hr>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
@@ -183,8 +178,6 @@
                                                 </div>
                                             </div>
                                    
-
-                                    
                                             <h3 class="text-center">Endereço</h3><hr>
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
@@ -288,10 +281,8 @@
                                 </div>     
                             </div>    
                         </form>    
-            </div> 
-    </div>
-</div>
-            
+        </div> 
+</div>            
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

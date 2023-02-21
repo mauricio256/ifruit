@@ -36,11 +36,10 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="card p-5 pt-4 w-100">
-            <div class="card-body bg-light shadow m-3">  
+        <div class="p-3 pt-4 bg-light h-100">  
                 <div class="text-start">
-                    <a href="painel.php" class="btn btn-outline-danger">Voltar</a> 
-                </div>
+                    <a href="painel.php" class="btn btn-outline-danger btn-sm ">Voltar</a> 
+                </div><br>
                 <h3 class="text-center">Produtos Cadastrados</h3><hr>
                 <div class="mb-3">
                     <div style=" overflow-y: scroll;"> 
@@ -51,9 +50,9 @@
                                             <th scope="col">Descrição</th>
                                             <th scope="col">Tamanho</th>
                                             <th scope="col">Grandeza</th>
-                                            <th scope="col">Valor da Grandeza</th>
-                                            <th scope="col">Valor unitário</th>
                                             <th scope="col">Quantidade em estoque</th>
+                                            <th scope="col">Valor unitário</th>
+                                            <th scope="col"></th>
                                             <th scope="col">Ações</th>
                                         </tr>
                                     </thead>
@@ -65,31 +64,25 @@
                                                 <th scope="row"><?php print $row['descricao']; ?></th>
                                                 <td><?php print $row['tamanho']; ?></td>
                                                 <td><?php print $row['tipo_unidade']; ?></td>
-                                                <td class="text-center" ><?php print $row['valor_unidade']; ?></td>
-                                                <td><?php print "R$: ".$row['valor_unitario']; ?></td>
                                                 <td class="text-center"><?php print $row['quantidade_estoque']; ?></td>
+                                                <td><?php print "R$: ".$row['valor_unitario']; ?></td>
+                                                <td><a class="btn btn-warning btn-sm" href="#">Alterar</a></td>
                                                 <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_produto.php?cod_produto=<?php print $row['cod_produto_pk']; ?>">Excluir</a></td>
                                             </tr>           
                                         <?php } endif; ?> 
                                     </tbody>
                         </table>
    
-                    </div> <br><br>
-                </div>    
-            </div>
-        <div class="card-body">                                       
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-                <div class="accordion-item">
+                    </div><br>                                    
                     <h2 class="accordion-header" id="flush-headingOne">
                         <button class="btn btn-primary collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                             Cadastrar novo produto
                         </button>
                     </h2><br>
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            
-                <div class="card-body bg-light shadow">
+        
                     <h3 class="text-center">Cadastro de válvula</h3><hr>
-                    <form action="php/processa_cadastro_produto.php" method="POST" class="p-3">
+                    <form action="php/processa_cadastro_produto.php" method="POST">
    
                                 <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Descrição</label>
@@ -118,11 +111,6 @@
                                 </select><br>
 
                                 <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Valor Grandeza</label>
-                                    <input type="text" class="form-control" name="valor_grandeza" id="exampleFormControlInput1" placeholder="">
-                                </div>
-
-                                <div class="mb-3">
                                     <label for="exampleFormControlInput1" class="form-label">Valor unitário</label>
                                     <input type="text" class="form-control" name="valor_unitario" id="exampleFormControlInput1" placeholder="Ex: R$:10,50">
                                 </div>
@@ -138,9 +126,9 @@
                                 </div>
                         </div>
                     </form>        
-                </div>
-            </div>    
-        </div> <br><br><br>
+                </div>    
+        </div> <br><br>
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script>

@@ -47,6 +47,19 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+        body{
+            background-image: url('img/vinhedo.jpg'); 
+            background-size: 100%; 
+            background-repeat: no-repeat;
+            font-family: 'Open Sans';
+            }
+            @media only screen and (max-width: 950px) {
+                      body{  
+                          background-image:url('img/vinhedo_mobile.jpg');   
+                      }
+                }
+        </style>
     </head>
     <body>
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">

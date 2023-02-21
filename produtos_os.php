@@ -60,16 +60,14 @@ function produtos(){
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="card p-5 pt-4 w-100">
-            <div class="card-body bg-light shadow m-3">    
-                <div class="text-start m-lg-3">
-                    <a href="cadastro_ordem_servico.php" class="btn btn-outline-danger">Voltar</a> 
-                </div>
-                <h3 class="text-center">Produtos | Código OS: <?php print $_GET['cod_os']; ?>  </h3><hr>
-                <div class="m-5">
-
+            <div class="bg-light h-100 p-3">    
+                <div class="text-start p-3">
+                    <a href="cadastro_ordem_servico.php" class="btn btn-outline-danger btn-sm">Voltar</a> 
+                </div><br>
+                <h3 class="text-center">Produtos | Código OS: <?php print $_GET['cod_os']; ?></h3><hr>
+                <div class="p-2">
                               <!-- Impressao de produtos da OS em questao-->
-                              <div class="bg-white m-5">
+                              <div class="bg-white">
                                                 <?php if(produto_os($_GET['cod_os'])): ?>
                                                     <table class="table">
                                                         <thead class="table-primary">
@@ -84,28 +82,24 @@ function produtos(){
                                                             <?php  foreach(produto_os($_GET['cod_os']) as $row_produtos){ ?>
                                                                 <tr>
                                                                     <th scope="row"><?php print produto($row_produtos['cod_produto_fk'])['descricao']; ?></th>
-                                                                    <th scope="row" class="text-center"><?php print $row_produtos['quantidade']; ?></th>
+                                                                    <th class="text-center"><?php print $row_produtos['quantidade']; ?></th>
                                                                     <td> <a class="btn btn-danger btn-sm" onclick="return confirma_deleta()" href="php/deleta_produto_os.php?cod_os=<?php print $_GET['cod_os']; ?>&cod_produto=<?php print $row_produtos['cod_produto_fk'];?>">Excluir</a></td>
                                                                 </tr> 
                                                                 <?php } else: print " &nbsp;&nbsp;&nbsp;<em>Não há produtos cadastrados</em>"; endif; ?> 
                                                         </tbody>
                                                         
                                                     </table>
-                                                </div><br>
+                                                </div><br><br>
                                                 <button class="btn btn-primary collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                                     Adicionar novo produto
                                                 </button> 
 
-                    
-                </div>
-            </div><br><br><br>
+       
 
-            <div class="card-body">
 
-            <div class="accordion accordion-flush" id="accordionFlushExample">
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <div class="card-body bg-light shadow">
-                    <form action="php/processa_cadastro_produto_os.php" method="POST"  class="p-3 "> 
+           <h2 class="p-3">Adicionar novo produto</h2><hr> 
+            <form action="php/processa_cadastro_produto_os.php" method="POST"> 
                                                                 
                                 <input type="number" hidden name="cod_os" value="<?php print $_GET['cod_os']; ?>">
                             
@@ -133,11 +127,7 @@ function produtos(){
                     </form> 
                 </div>
             </div>
-        </div> 
-        
-
-           
-        </div> 
+    
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

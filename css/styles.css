@@ -11701,7 +11701,6 @@ body {
 }
 
 body{
-  background-image: url('../img/vinhedo.jpg'); 
   background-size: 100%; 
   background-repeat: no-repeat;
   font-family: 'Open Sans';
@@ -11714,9 +11713,7 @@ div#boxlogin{
 }
 
                     @media only screen and (max-width: 950px) {
-                      body{  
-                          background-image:url('../img/vinhedo_mobile.jpg');   
-                      }
+                     
                       div#boxlogin{
                         background-color: rgba(255,255,255,0.0);
                       }

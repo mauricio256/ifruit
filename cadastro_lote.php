@@ -38,13 +38,12 @@ function lote(){
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="card p-5 pt-4 w-100">
-            <div class="card-body bg-light shadow m-3">    
-                <div class="text-start m-lg-3">
-                    <a href="painel.php" class="btn btn-outline-danger">Voltar</a> 
-                </div>
+        <div class="bg-light h-100">    
+                <div class="text-start ">
+                    <a href="painel.php" class="btn btn-outline-danger btn-sm m-3 ">Voltar</a> 
+                </div><br>
                 <h3 class="text-center">Lotes Cadastrados</h3><hr>
-                <div class="m-3 " >
+                <div class="m-3">
                     <div style=" overflow-y: scroll;">  
                         <table class="table table-striped">
                                 <thead class="table-primary">
@@ -66,42 +65,37 @@ function lote(){
                                 </tbody>
                         </table>
                     </div>
-                </div><br><br>
-            </div>
-            <div class="card-body">
-
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-                <div class="accordion-item">
+                </div>
+            
+            <div class="accordion accordion-flush " id="accordionFlushExample">
                     <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="btn btn-primary collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <button class="btn btn-primary  collapsed m-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                             Cadastrar novo Lote
                         </button>
                     </h2>
                     <br>
 
-            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <div class="card-body bg-light shadow">
-                    <h3 class="text-center">Cadastro de lote</h3><hr>
-                    <form action="php/processa_cadastro_lote.php" method="POST"  class="p-3 "> 
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Número do Lote</label>
-                                    <input type="number" class="form-control" required  name="cod_lote" id="exampleFormControlInput1" placeholder="">
-                                    </div>
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
-                                                <textarea class="form-control" required name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                        </div>                             
+                    <div id="flush-collapseOne" class="accordion-collapse collapse p-2 mb-3" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <h3 class="text-center">Cadastro de lote</h3><hr>
+                            <form action="php/processa_cadastro_lote.php" method="POST"> 
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Número do Lote</label>
+                                            <input type="number" class="form-control" required  name="cod_lote" id="exampleFormControlInput1" placeholder="">
+                                            </div>
+                                                <div class="mb-3">
+                                                    <label for="exampleFormControlTextarea1" class="form-label">Descrição</label>
+                                                        <textarea class="form-control" required name="descricao" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>                             
 
-                                    <div class="mt-5 text-end">
-                                        <a href="cadastro_lote.php" class="btn btn-outline-danger">Fechar</a>
-                                        <button type="submit" class="btn btn-info">Cadastrar</button>   
-                                    </div> 
-                            </div>  
-                    </form> 
-                </div>
+                                            <div class="mt-5 text-end">
+                                                <a href="cadastro_lote.php" class="btn btn-outline-danger">Fechar</a>
+                                                <button type="submit" class="btn btn-info">Cadastrar</button>   
+                                            </div> 
+                                    </div>  
+                            </form> 
+                        </div>
             </div>
-        </div> 
-
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script>
