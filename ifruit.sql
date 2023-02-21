@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Fev-2023 às 15:59
+-- Tempo de geração: 22-Fev-2023 às 00:33
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 7.4.30
 
@@ -137,7 +137,6 @@ CREATE TABLE `produto` (
   `descricao` varchar(60) NOT NULL,
   `tamanho` varchar(220) NOT NULL,
   `tipo_unidade` varchar(60) NOT NULL,
-  `valor_unidade` float NOT NULL,
   `valor_unitario` decimal(10,2) NOT NULL,
   `quantidade_estoque` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -146,9 +145,9 @@ CREATE TABLE `produto` (
 -- Extraindo dados da tabela `produto`
 --
 
-INSERT INTO `produto` (`cod_produto_pk`, `descricao`, `tamanho`, `tipo_unidade`, `valor_unidade`, `valor_unitario`, `quantidade_estoque`) VALUES
-(16, 'fertilizante', 'Geral', 'Unidade', 1, '54.89', 3),
-(17, 'fsfsfsf', 'Geral', 'Litro', 10, '0.00', 6);
+INSERT INTO `produto` (`cod_produto_pk`, `descricao`, `tamanho`, `tipo_unidade`, `valor_unitario`, `quantidade_estoque`) VALUES
+(16, 'fertilizante', 'Geral', 'Unidade', '54.89', 3),
+(19, 'Tesoura de poda', 'Medio', 'Unidade', '0.00', 15);
 
 -- --------------------------------------------------------
 
@@ -162,6 +161,15 @@ CREATE TABLE `produto_os` (
   `cod_produto_fk` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `produto_os`
+--
+
+INSERT INTO `produto_os` (`cod_produto_os_pk`, `cod_os_fk`, `cod_produto_fk`, `quantidade`) VALUES
+(34, 19, 16, 15),
+(35, 18, 19, 2),
+(36, 18, 19, 2);
 
 -- --------------------------------------------------------
 
@@ -262,13 +270,13 @@ ALTER TABLE `ordem_servico`
 -- AUTO_INCREMENT de tabela `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `cod_produto_pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `cod_produto_pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `produto_os`
 --
 ALTER TABLE `produto_os`
-  MODIFY `cod_produto_os_pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `cod_produto_os_pk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Restrições para despejos de tabelas
