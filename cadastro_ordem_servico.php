@@ -98,10 +98,47 @@ function valvula(){
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div class="p-3 pt-4 bg-light h-100 ">
-                <div class=" text-start">
-                    <a href="painel.php" class="btn btn-outline-danger btn-sm">Voltar</a> 
-                </div><br>
+    <nav class="navbar navbar-expand-lg bg-info">
+            <div class="container-fluid" >
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">|||</span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 400px;">
+                    <a class="btn btn-outline-dark"  href="painel.php"> Painel de controle</a>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Cadastros
+                    </a>
+                    <ul class="dropdown-menu p-2">
+                        <a class="nav-link" href="cadastro_funcionario.php">Funcionário</a>
+                        <a class="nav-link" href="cadastro_lote.php">Lote</a>
+                        <a class="nav-link" href="cadastro_valvula.php">Válvula</a>
+                        <a class="nav-link" href="cadastro_linha.php">Linha</a>
+                        <a class="nav-link" href="cadastro_ordem_servico.php">Ordem de Serviço</a>
+                        <a class="nav-link" href="cadastro_produto.php">Produto</a>
+                    </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Relatórios
+                    </a>
+                    <ul class="dropdown-menu p-2">
+                        <a class="nav-link" href="relatorio_funcionario.php">Funcionário</a>
+                        <a class="nav-link" href="relatorio_os.php">Orden de Serviço</a>
+                        <a class="nav-link" href="relatorio_produto.php">Produto</a>   
+                    </ul>
+                    </li>
+                  
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Cod ordem de serviço" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+                </div>
+            </div>
+        </nav>
+                <div class="p-3 pt-4 bg-light h-100 ">
                 <h3 class="text-center">Ordens de serviço</h3>
                 <div class="mb-3">
                     <div style=" overflow-y: scroll;"> 
