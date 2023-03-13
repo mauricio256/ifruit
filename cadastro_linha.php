@@ -87,9 +87,7 @@ function linha(){
                         Relatórios
                     </a>
                     <ul class="dropdown-menu p-2">
-                        <a class="nav-link" href="relatorio_funcionario.php">Funcionário</a>
-                        <a class="nav-link" href="relatorio_os.php">Orden de Serviço</a>
-                        <a class="nav-link" href="relatorio_produto.php">Produto</a>   
+                        <a class="nav-link" href="relatorio_resultados.php">Relatório de resultados</a> 
                     </ul>
                     </li>
                   

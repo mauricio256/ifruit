@@ -81,7 +81,6 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item " href="perfil.php">Meu perfil</a></li>
-                        <li><a class="dropdown-item " href="painel.php">Menu</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item text-danger" href="php/processa_logout.php">Sair</a></li>
                     </ul>
@@ -130,9 +129,7 @@
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link" href="#">Funcionário</a>
-                                    <a class="nav-link" href="#">Orden de Serviço</a>
-                                    <a class="nav-link" href="#">Produto</a>   
+                                    <a class="nav-link" href="relatorio_resultados.php">Relatório de resultados</a>
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading"></div>

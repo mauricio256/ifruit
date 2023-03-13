@@ -74,8 +74,8 @@
                     <br><h6 class="text-center btn-info">Sistema</h6>
                     <label class="form-label opacity-50 ">Data do cadastro: </label> <?php print $row['cadastro']; ?><br>
                     <hr>
-                    <a href="#" type="button" class="btn btn-warning float-start small">Alterar</a>
-                    <a href="painel.php" type="button" class="btn btn-info float-end small">Voltar</a>
+                    <a href="#" type="button" class="btn btn-warning float-start small">Alterar Dados</a>
+                    <a href="painel.php" type="button" class="btn btn-info float-end small">Fechar</a>
                 <?php } ?>
             </div>
         </div>

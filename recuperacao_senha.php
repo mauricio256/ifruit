@@ -34,22 +34,18 @@
                     <div class="container ">
                         <div class="row justify-content-center mt-5">
                             <div class="col-lg-5 mt-5 ">
-                                <div id="boxlogin" class="container mt-5 btn btn-light ">
+                                <div id="boxlogin" class="container mt-5 btn btn-light bg-light">
                                     <div >
-                                        <h3 class="text-center font-weight-light my-4 text-white"><img src="https://cdn-icons-png.flaticon.com/512/676/676422.png" width="50px"><strong>Uva & Cia </strong> </h3></div>
+                                        <h3 class="text-center font-weight-light my-4 text-white"><img><strong> </strong> </h3></div>
                                     <div class="card-body">
-                                        <form action="php/processa_login.php" method="post">
+                                        <form action="php/processa_recupera_conta.php" method="post">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" name="cpf" placeholder="Digite seu CPF" required />
-                                                <label for="inputEmail">Digite seu CPF (Apenas números)</label>
+                                                <input class="form-control" name="cpf" placeholder="Digite seu CPF para recuperar sua conta" required />
+                                                <label for="inputEmail">Digite seu CPF para recuperar sua conta</label>
                                             </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" type="password" name="senha" placeholder="Digite sua senha" required/>
-                                                <label for="inputPassword">Digite sua senha</label>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="recuperacao_senha.php">Esqueci minha senha!</a>
-                                                <button type="submit" name="entrar" class="btn btn-info">Entrar</button>
+                                            <div class="text-end   justify-content-between mt-4 mb-0">
+                                                <a href="index.html" class="btn btn-outline-danger">Cancelar</a>
+                                                <button type="submit" name="recuperar" class="btn btn-success">Recuperar </button>
                                             </div>
                                         </form>
                                     </div>
